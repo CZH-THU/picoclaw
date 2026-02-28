@@ -24,7 +24,8 @@ func TestNewGatewayCommand(t *testing.T) {
 	assert.Nil(t, cmd.PersistentPreRun)
 	assert.Nil(t, cmd.PersistentPostRun)
 
-	assert.False(t, cmd.HasSubCommands())
+	// Gateway command now accepts up to 1 argument (for "status" subcommand)
+	assert.NotNil(t, cmd.Args)
 
 	assert.True(t, cmd.HasFlags())
 	assert.NotNil(t, cmd.Flags().Lookup("debug"))

@@ -8,7 +8,7 @@ import (
 	"github.com/sipeed/picoclaw/pkg/auth"
 )
 
-func statusCmd() {
+func StatusCmd() {
 	cfg, err := internal.LoadConfig()
 	if err != nil {
 		fmt.Printf("Error loading config: %v\n", err)

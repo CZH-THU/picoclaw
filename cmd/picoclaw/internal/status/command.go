@@ -10,7 +10,7 @@ func NewStatusCommand() *cobra.Command {
 		Aliases: []string{"s"},
 		Short:   "Show picoclaw status",
 		Run: func(cmd *cobra.Command, args []string) {
-			statusCmd()
+			StatusCmd()
 		},
 	}
 
