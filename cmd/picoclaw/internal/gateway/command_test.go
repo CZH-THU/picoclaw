@@ -30,3 +30,22 @@ func TestNewGatewayCommand(t *testing.T) {
 	assert.True(t, cmd.HasFlags())
 	assert.NotNil(t, cmd.Flags().Lookup("debug"))
 }
+
+func TestGatewayCommandStatusArgument(t *testing.T) {
+	cmd := NewGatewayCommand()
+
+	// Test that "status" argument is accepted and routes correctly
+	err := cmd.RunE(cmd, []string{"status"})
+	// StatusCmd() doesn't return an error, so this should succeed
+	assert.NoError(t, err)
+}
+
+func TestGatewayCommandUnknownArgument(t *testing.T) {
+	cmd := NewGatewayCommand()
+
+	// Test that unknown arguments are rejected
+	err := cmd.RunE(cmd, []string{"foo"})
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "unknown argument: foo")
+	assert.Contains(t, err.Error(), "did you mean 'picoclaw status'?")
+}
